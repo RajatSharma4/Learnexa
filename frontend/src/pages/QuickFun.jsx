@@ -8,6 +8,8 @@ function QuickFun() {
 
   const [selectedGame, setSelectedGame] = useState(null);
 
+  const [loading, setLoading] = useState(false);
+
   const funApps = [
     {
       title: "Bubble Hit",
@@ -28,6 +30,16 @@ function QuickFun() {
     },
   ];
 
+  // HANDLE GAME OPEN
+
+  const openGame = (app) => {
+
+    setLoading(true);
+
+    setSelectedGame(app);
+
+  };
+
   return (
 
     <div className="min-h-screen bg-black text-white">
@@ -44,7 +56,10 @@ function QuickFun() {
 
             <FaArrowLeft
               className="text-3xl cursor-pointer"
-              onClick={() => setSelectedGame(null)}
+              onClick={() => {
+                setSelectedGame(null);
+                setLoading(false);
+              }}
             />
 
             <h1 className="text-2xl font-semibold">
@@ -53,12 +68,42 @@ function QuickFun() {
 
           </div>
 
+          {/* LOADING SCREEN */}
+
+          {loading && (
+
+            <div className="flex flex-col items-center justify-center h-[90vh]">
+
+              {/* Spinner */}
+
+              <div
+                className="
+                  w-14
+                  h-14
+                  border-4
+                  border-white/20
+                  border-t-white
+                  rounded-full
+                  animate-spin
+                "
+              />
+
+              <p className="mt-5 text-gray-400 text-lg">
+                Loading Game...
+              </p>
+
+            </div>
+
+          )}
+
           {/* IFRAME */}
 
           <iframe
             src={selectedGame.link}
             title={selectedGame.title}
-            className="w-full h-[90vh] bg-white"
+            className={`w-full h-[90vh] bg-white ${loading ? "hidden" : "block"
+              }`}
+            onLoad={() => setLoading(false)}
           />
 
         </div>
@@ -96,7 +141,7 @@ function QuickFun() {
 
               <div
                 key={index}
-                onClick={() => setSelectedGame(app)}
+                onClick={() => openGame(app)}
                 className="
                   border border-white/20
                   bg-white/5

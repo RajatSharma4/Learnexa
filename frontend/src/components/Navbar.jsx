@@ -168,6 +168,9 @@ const Navbar = () => {
                         My Courses
                     </div>
 
+                    <button className='px-5 py-2.5 border-2 border-white text-white
+                            rounded-[10px] text-[18px] font-light cursor-pointer bg-[#000000d5]' onClick={()=>navigate("/quickfun")}>🎮Quick-Fun</button>
+
                     {userData?.role === "educator" && (
                         <div className='w-50 h-15 border-2 border-white  flex items-center justify-center
                         text-white bg-black rounded-[10px]
