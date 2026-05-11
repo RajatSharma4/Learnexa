@@ -22,7 +22,7 @@ const Navbar = () => {
 
     const handleLogOut = async () => {
         try {
-            const result = await axios.get(
+              await axios.get(
                 serverUrl + "/api/auth/logout",
                 { withCredentials: true }
             )
@@ -114,7 +114,11 @@ const Navbar = () => {
                             </span>
                         </div>
                     )}
+                      <button className='px-5 py-2.5 border-2 border-white text-white
+                            rounded-[10px] text-[18px] font-light cursor-pointer bg-[#000000d5]' onClick={()=>navigate("/quickfun")}>🎮Quick-Fun</button>
                 </div>
+
+              
 
                 {/* Hamburger */}
                 <GiHamburgerMenu

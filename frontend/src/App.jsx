@@ -24,6 +24,7 @@ import ViewLectures from './pages/ViewLectures.jsx'
 import MyEnrolledCourses from './pages/MyEnrolledCourses.jsx'
 import getAllReviews from './customHooks/getAllReviews.js'
 import SearchWithAi from './pages/SearchWithAi.jsx'
+import QuickFun from './pages/QuickFun.jsx'
 
 export const serverUrl = "https://learnexa-han0.onrender.com"
 
@@ -58,6 +59,7 @@ const App = () => {
         <Route path='/viewlecture/:courseId/' element={userData ? <ViewLectures /> : <Navigate to={"/signup"} />} />
         <Route path='/mycourses' element={userData ? <MyEnrolledCourses/> : <Navigate to={"/signup"} />} />
         <Route path='/search' element={userData ? <SearchWithAi/> : <Navigate to={"/signup"} />} />
+        <Route path='/quickfun' element={<QuickFun />} />
       </Routes>
     </>
   )

@@ -13,6 +13,7 @@ import { useDispatch } from 'react-redux';
 import { setUserData } from '../redux/userSlice';
 import { auth, provider } from '../../utils/firebase';
 import { signInWithPopup } from 'firebase/auth'
+import { FaArrowLeft } from "react-icons/fa";
 
 
 const SignUp = () => {
@@ -72,6 +73,8 @@ const SignUp = () => {
             <form className='w-full max-w-4xl bg-white shadow-xl rounded-2xl flex flex-col md:flex-row' onSubmit={(e) => e.preventDefault()}>
 
                 {/* Left div */}
+                <FaArrowLeft className='text-[40px] cursor-pointer px-2 py-2' onClick={() => navigate("/")} />
+
                 <div className='w-full md:w-1/2 flex flex-col items-center justify-center gap-3 py-8'>
 
                     <div className='text-center'>
@@ -124,12 +127,12 @@ const SignUp = () => {
                     {/* Role */}
                     <div className='flex w-[85%] items-center justify-around'>
                         <span className={`px-3 py-1 border-2 border-[#e7e6e6] rounded-xl cursor-pointer hover:border-black ${role === "student" ? "border-black" : "border-[#646464]"}`}
-                            onClick={(e) => setRole("student")}
+                            onClick={() => setRole("student")}
                         >
                             Student
                         </span>
                         <span className={`px-3 py-1 border-2 border-[#e7e6e6] rounded-xl cursor-pointer hover:border-black ${role === "educator" ? "border-black" : "border-[#646464]"}`}
-                            onClick={(e) => setRole("educator")}
+                            onClick={() => setRole("educator")}
                         >
                             Educator
                         </span>
