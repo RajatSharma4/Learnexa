@@ -197,6 +197,8 @@ export const deleteLecture = async (req, res) => {
         if (!lecture) {
             return res.status(404).json({ message: "Lecture not Found" })
         }
+
+        // it is use for removing lectureId from the Course 
         await Course.updateOne(
             { lectures: lectureId },
             { $pull: { lectures: lectureId } }

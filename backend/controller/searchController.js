@@ -11,7 +11,7 @@ export const searchWithAi = async (req, res) => {
         }
 
         const ai = new GoogleGenAI({
-            apikey: process.env.GEMINI_API_KEY
+            apiKey: process.env.GEMINI_API_KEY
         });
 
         const prompt = `You are an intelligent assitance for an LMS platform.

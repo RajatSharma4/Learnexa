@@ -62,7 +62,7 @@ const ViewCourse = () => {
           setCreatorData(result.data)
 
         } catch (error) {
-
+          console.log(error)
         }
       }
     }
@@ -89,12 +89,14 @@ const ViewCourse = () => {
   }, [courseData, courseId, userData])
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     checkEnrollment()
   }, [userData, courseId])
 
   useEffect(() => {
     if (creatorData?._id && courseData.length > 0) {
       const creatorCourse = courseData.filter((course) => course.creator?.toString() === creatorData?._id?.toString() && course._id !== courseId)
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setCreatorCourses(creatorCourse)
     }
   }, [creatorData, courseData, courseId])
@@ -117,10 +119,10 @@ const ViewCourse = () => {
             const verifyPayment = await axios.post(serverUrl + "/api/order/verifypayment",
               { ...response, courseId, userId }, { withCredentials: true })
 
-            // ✅ IMPORTANT: Fetch fresh user data after successful enrollment
-            const updatedUserData = await fetchUserData()
+            //  IMPORTANT: Fetch fresh user data after successful enrollment
+              await fetchUserData()
 
-            // ✅ Update local enrollment state
+            //  Update local enrollment state
             setIsEnrolled(true)
 
             toast.success(verifyPayment.data.message)
@@ -139,7 +141,7 @@ const ViewCourse = () => {
     }
   }
 
-  const handleReview = async (req, res) => {
+  const handleReview = async () => {
     setLoading(true)
     try {
       const result = await axios.post(serverUrl + "/api/review/createreview", { rating, comment, courseId }, { withCredentials: true })

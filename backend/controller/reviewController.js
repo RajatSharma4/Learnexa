@@ -10,7 +10,7 @@ export const createReview = async(req,res)=>{
 
         const course = await Course.findById(courseId)
         if(!course){
-            return res.status(400).json({message:"Course is not found"})
+            return res.status(400).json({message :"Course is not found"})
         }
 
         const alreadyReviewed = await Review.findOne({course:courseId, user:userId})

@@ -1,3 +1,4 @@
+
 import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
@@ -25,8 +26,10 @@ import MyEnrolledCourses from './pages/MyEnrolledCourses.jsx'
 import getAllReviews from './customHooks/getAllReviews.js'
 import SearchWithAi from './pages/SearchWithAi.jsx'
 import QuickFun from './pages/QuickFun.jsx'
+import ChatbotPage from './pages/ChatbotPage.jsx'
 
 export const serverUrl = "https://learnexa-han0.onrender.com"
+// export const serverUrl = "http://localhost:8000"
 
 const App = () => {
   getCurrentUser()
@@ -40,6 +43,13 @@ const App = () => {
 
       <ToastContainer />
       <ScrollToTop />
+
+      {/*
+        ChatbotPage is a global floating widget (it renders its own
+        Help button + slide-in panel internally), not a page — so it
+        must be mounted here, outside <Routes>, to appear on every route.
+      */}
+      <ChatbotPage />
 
       <Routes>
         <Route path='/' element={<Home />} />
@@ -61,6 +71,8 @@ const App = () => {
         <Route path='/search' element={userData ? <SearchWithAi/> : <Navigate to={"/signup"} />} />
         <Route path='/quickfun' element={<QuickFun />} />
       </Routes>
+
+
     </>
   )
 }
